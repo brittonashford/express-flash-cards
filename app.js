@@ -1,9 +1,10 @@
 const express = require('express');
-
 const app = express();  //returns an express application
 
+app.set('view engine', 'pug');
+
 app.get('/', (req, res) => {
-	res.send("<h1>This is the home page. Welcome.</h1>")
+	res.render('index'); //refers to the index.pug file. extension not needed.
 });
 
 app.get('/hello', (req, res) => {
