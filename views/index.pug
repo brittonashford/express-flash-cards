@@ -1,7 +1,7 @@
-doctype html
-html(lang="en")
-  head
-    title Landing Page
-  body
-    h1 The future home of something magical.
-    p Bitters single-origin coffee church-key man bun, gluten-free affogato salvia. Yr glossier leggings next level kale chips fam photo booth dreamcatcher fashion axe cardigan succulents cred pour-over ennui hella. Shaman unicorn health goth cornhole. Drinking vinegar taiyaki portland fingerstache disrupt, mixtape pop-up la croix shoreditch street art bespoke. Hell of lyft pok pok crucifix activated charcoal master cleanse unicorn synth bicycle rights shabby chic coloring book blog disrupt roof party. Mumblecore chicharrones blog kickstarter locavore pop-up readymade keffiyeh tofu banjo skateboard.
+extends layout.pug
+
+block content
+    section#content
+        h2 Welcome #{name}!
+        form(action='/goodbye', method='post')
+            button(type='submit') Goodbye
