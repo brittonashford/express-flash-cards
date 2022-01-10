@@ -2,11 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
-
 const app = express();  //returns an express application
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookiePareser());
+app.use(cookieParser());
 
 app.set('view engine', 'pug');
 
@@ -20,10 +19,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/cards', (req, res) => {
-	res.render('cards', {
-		prompt: "Who is buried in Grant's tomb?",
-		colors
-	});
+	res.render('cards', { prompt: "Placeholder for a question?"});
 });
 
 app.get('/hello', (req, res) => {
@@ -43,6 +39,18 @@ app.post('/hello', (req, res) => {
 app.post('/goodbye', (req, res) => {
 	res.clearCookie('username');
 	res.redirect('/hello');
+})
+
+app.use((req, res, next) => {
+	const err = new Error('not found');
+	err.status = 404;
+	next(err)
+})
+
+app.use((err, req, res, next) => {
+	res.locals.error = err;
+	res.status(err.status);
+	res.render('error')
 })
 
 app.listen(3001, () => {
